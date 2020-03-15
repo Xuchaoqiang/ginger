@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 # @Author :xuchaoqiang
-from app.app import create_app
+from app1.app import create_app
 
 app = create_app()
 
