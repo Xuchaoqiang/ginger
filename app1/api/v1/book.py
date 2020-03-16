@@ -2,17 +2,17 @@
 # @Author :xuchaoqiang
 
 
-# blueprint
-from flask import Blueprint
+# redprint
+from app1.libs.redprint import Redprint
 
-book = Blueprint("book", __name__)
+api = Redprint("book")
 
 
-@book.route('/v1/book/get')
+@api.route('/v1/book/get')
 def get_book():
     return "get_book"
 
 
-@book.route("/v1/book/create")
+@api.route("/v1/book/create")
 def create_book():
     return "create book"

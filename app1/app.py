@@ -4,10 +4,8 @@ from flask import Flask
 
 
 def register_blueprints(app):
-    from app1.api.v1.user import user
-    from app1.api.v1.book import book
-    app.register_blueprint(user)
-    app.register_blueprint(book)
+    from app1.api.v1 import create_blueprint_v1
+    app.register_blueprint(create_blueprint_v1(), url_prefix="/v1")
 
 
 def create_app():
