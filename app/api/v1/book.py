@@ -3,7 +3,7 @@
 
 
 # redprint
-from app1.libs.redprint import Redprint
+from app.libs.redprint import Redprint
 
 api = Redprint("book")
 

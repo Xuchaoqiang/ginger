@@ -2,7 +2,7 @@
 # @Author :xuchaoqiang
 
 from flask import Blueprint
-from app1.api.v1 import user, book
+from app.api.v1 import user, book
 
 
 def create_blueprint_v1():
