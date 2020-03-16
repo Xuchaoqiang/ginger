@@ -4,7 +4,7 @@
 from sqlalchemy import Column, Integer, String, SmallInteger
 from werkzeug.security import generate_password_hash
 
-from app.api.models.base import Base, db
+from app.models.base import Base, db
 
 
 class User(Base):
