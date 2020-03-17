@@ -1,12 +1,29 @@
 # -*- coding:utf-8 -*-
 # @Author :xuchaoqiang
 
-from werkzeug.exceptions import HTTPException
+from app.libs.error import APIException
 
 
-class ClientTypeError(HTTPException):
+class Success(APIException):
+    code = 201
+    msg = "ok"
+    error_code = 0
 
+
+class ServerError(APIException):
+    code = 500
+    msg = "sorry, we make a mistake!"
+    error_code = 999
+
+
+class ClientTypeError(APIException):
     code = 400
-    description = (
-        "client is invalid"
-    )
+    msg = "client is invalid"
+    error_code = 1006
+
+
+class ParameterException(APIException):
+    code = 400
+    msg = "invalid parameters"
+    error_code = 1000
+

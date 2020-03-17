@@ -15,7 +15,6 @@ class Redprint:
     def route(self, rule, **options):
         def decorator(f):
             self.mound.append((f, rule, options))
-            print(f, rule, options)
             return f
         return decorator
 
