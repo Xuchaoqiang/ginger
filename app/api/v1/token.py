@@ -15,7 +15,7 @@ api = Redprint("token")
 def get_token():
     form = ClientForm().validate_for_api()
     promise = {
-        ClientTypeEnum.USER_EMAIL: User.Verify,
+        ClientTypeEnum.USER_EMAIL: User.verify,
     }
     identify = promise[ClientTypeEnum(form.type.data)](
         form.account.data,
