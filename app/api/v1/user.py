@@ -2,8 +2,9 @@
 # @Author :xuchaoqiang
 
 # redprint
-from flask import jsonify
+from flask import jsonify, g
 
+from app.libs.error_code import DeleteSuccess
 from app.libs.redprint import Redprint
 from app.libs.token_auth import auth
 from app.models.base import db
@@ -19,9 +20,16 @@ def get_user(uid):
     return jsonify(user)
 
 
-@api.route("/<int:uid>", methods=["DELETE"])
+@api.route("/<int:uid>", methods="DELETE")
 @auth.login_required
-def delete_user(uid):
+def super_delete_user(uid):
+    pass
+
+
+@api.route("", methods=["DELETE"])
+@auth.login_required
+def delete_user():
+    uid = g.user.uid
     with db.auto_commit():
         user = User.query.filter_by(id=uid).first_or_404()
         user.delete()
