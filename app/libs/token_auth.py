@@ -6,7 +6,8 @@ from itsdangerous import TimedJSONWebSignatureSerializer as Serializer, BadSigna
 from flask import current_app, g
 from flask_httpauth import HTTPBasicAuth
 
-from app.libs.error_code import AuthFailed
+from app.libs.error_code import AuthFailed, Forbidden
+from app.libs.scope import is_in_scope
 
 auth = HTTPBasicAuth()
 
@@ -41,4 +42,10 @@ def verify_auth_token(token):
                          error_code=1003)
     uid = data.get("uid")
     ac_type = data.get("type")
-    return User(uid, ac_type, "")
+    scope = data.get("scope")
+
+    allow = is_in_scope(scope)
+    if not allow:
+        raise Forbidden()
+
+    return User(uid, ac_type, scope)

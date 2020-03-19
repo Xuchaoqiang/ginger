@@ -40,7 +40,8 @@ class User(Base):
         user = User.query.filter_by(email=email).first_or_404()
         if not user.check_password(password):
             raise AuthFailed()
-        return {"uid": user.id}
+        scope = "AdminScope" if user.auth == 2 else "UserScore"
+        return {"uid": user.id, "scope": scope}
 
     def check_password(self, raw):
         if not self._password:
