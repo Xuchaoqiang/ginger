@@ -82,3 +82,18 @@ class Base(db.Model):
 
     def delete(self):
         self.status = 0
+
+    def keys(self):
+        return self.fields
+
+    """
+    hide 和 append可以灵活的改写model下面的fields属性，灵活的控制返回给用户的字段信息
+    """
+
+    def hide(self, *keys):
+        for key in keys:
+            self.fields.remove(key)
+
+    def append(self, *keys):
+        for key in keys:
+            self.fields.append(key)
